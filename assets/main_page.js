@@ -11,6 +11,15 @@ var category = document.getElementById("#quizQCategory");
 
 console.log("hi");
 
+//This sets the initial display of the game card border to none
+document.getElementById("game-card-border").style.display = "none";
+//This creates the onclick function which hides the generator box and displays the questions box
+document.getElementById("trivia-gen").onclick = function () {
+    document.getElementById("trivia-gen").style.display = "none";
+    document.getElementById("")
+}
+
+
 var timeLeft = 10;
 var downloadTimer = setInterval(function(){
     if (timeLeft <=0) {
