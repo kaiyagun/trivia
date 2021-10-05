@@ -36,8 +36,23 @@ var downloadTimer = setInterval(function(){
 
 $("#generate").click(function startQuiz(event) {
     event.preventDefault;
-    getAPI();
+    console.log("hi");
+
+    setInterval();
+    displayQuestions();
+    checkAnswer();
 });
+
+function displayQuestions(){
+
+}
+
+function checkAnswer(){
+    
+}
+    getAPI();
+
+
 
 
 
