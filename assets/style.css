@@ -57,3 +57,11 @@ body{
 #menu-container {
     background-color: #9993b2;
 }
+
+
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 992px) {
+}
