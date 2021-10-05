@@ -19,7 +19,6 @@ body{
     right:450px;
 }
 
-
 #questions {
     margin-top: 5%;
     margin-bottom: 5%;
@@ -46,4 +45,7 @@ body{
 
 #timer {
     margin-right: 5%;
+
+#menu-container {
+    background-color: #9993b2;
 }
