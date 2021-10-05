@@ -10,6 +10,42 @@ body{
     margin: 0 0 2% 0;
 }
 
+#game-card-border {
+    border: 7px solid greenyellow;
+    border-radius: 12px;
+    margin:auto;
+    position: absolute;
+    top: 300px;
+    right:450px;
+}
+
+#questions {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: 3px solid orangered;
+}
+
+#answer-1 {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#answer-2 {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+#answer-3 {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+#answer-4 {
+    margin-top: 5%;
+    margin-bottom: 30%;
+}
+
+#timer {
+    margin-right: 5%;
+
 #menu-container {
     background-color: #9993b2;
 }
