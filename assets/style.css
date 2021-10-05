@@ -9,6 +9,10 @@ body{
 #profile-header {
     margin: 0 0 2% 0;
 }
+<<<<<<< HEAD
+#name{
+    margin-right: 150px;
+=======
 
 #trivia-gen {
     position: absolute;
@@ -64,4 +68,5 @@ body{
 }
 
 @media screen and (min-width: 992px) {
+>>>>>>> dev
 }
