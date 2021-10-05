@@ -10,11 +10,18 @@ body{
     margin: 0 0 2% 0;
 }
 
+#trivia-gen {
+    position: absolute;
+    right: 50%;
+    background-color: silver;
+}
+
 #game-card-border {
     border: 7px solid greenyellow;
     border-radius: 12px;
     margin:auto;
     position: absolute;
+    display: none;
     top: 300px;
     right:450px;
 }
