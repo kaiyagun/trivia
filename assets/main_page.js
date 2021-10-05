@@ -1,6 +1,13 @@
 var triviaAPI = "https://opentdb.com/api.php?amount=";
 var insultAPI = "https://evilinsult.com/generate_insult.php?lang=en&type=json";
 var genButton = $("#generate");
+var answersEl = [$("#answer-1"), $("#answer-2"), $("#answer-3"), $("#answer-4")];
+
+var numQuestions = document.getElementById("quizQNumber");
+var difficulty = document.getElementById("#quizQDifficulty");
+var category = document.getElementById("#quizQCategory");
+
+
 
 console.log("hi");
 
@@ -15,13 +22,10 @@ var downloadTimer = setInterval(function(){
     timeLeft -= 1;
 }, 1000);
 
-var callAPI = function () {
-    var numQuestions = $("#quizQNumber").value;
-    console.log(numQuestions);
-};
 
 $("#generate").click(function startQuiz(event) {
     event.preventDefault;
+<<<<<<< HEAD
     console.log("hi");
 
     setInterval();
@@ -36,3 +40,41 @@ function displayQuestions(){
 function checkAnswer(){
     
 }
+=======
+    getAPI();
+});
+
+
+
+var getAPI = function() {
+    var url = triviaAPI + numQuestions + "&category=" + category.val() + "&difficulty=" + difficulty;
+
+    console.log(url);
+    
+
+    if (numQuestions === null || category === null || difficulty === null) {
+        //error message here, fields must have a value
+    };
+
+    fetch(url)
+    .then(function (response) {
+        if (response.ok) {
+
+            response.json().then(results => {
+                console.log(results);
+                });
+            };
+        })
+    .catch(error => {
+        console.log("fail" + error);
+    })
+
+};
+
+var displayQuestions = function() {
+    console.log(getAPI);
+};
+
+
+    
+>>>>>>> 16e25083ee181830a79b84e31e9161b1ac2537de
