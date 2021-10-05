@@ -1,4 +1,3 @@
-
 var genButton = $("#generate");
 // what api to use for reward?
 
@@ -15,4 +14,7 @@ var profileLoad = function () {
     console.log(profilePage)
 
 }
+
+
+
 

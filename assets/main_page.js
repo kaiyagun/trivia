@@ -20,8 +20,19 @@ var callAPI = function () {
     console.log(numQuestions);
 };
 
-$("#generate").click(function(event) {
+$("#generate").click(function startQuiz(event) {
     event.preventDefault;
     console.log("hi");
+
+    setInterval();
+    displayQuestions();
+    checkAnswer();
 });
 
+function displayQuestions(){
+
+}
+
+function checkAnswer(){
+    
+}
