@@ -15,4 +15,3 @@ var profileLoad = function () {
     console.log(profilePage)
 
 }
-

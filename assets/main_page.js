@@ -25,3 +25,10 @@ $("#generate").click(function(event) {
     console.log("hi");
 });
 
+document.getElementById("generate").onclick = function () {
+    document.getElementById("trivia-gen").style.display = "none";
+    document.getElementById("game-card-border").style.display = "block";   //TODO: needs an additional component that hides "questions" id on page load, and displays "questions" id on click "generate" button
+    console.log("trivia generator hidden");
+    console.log("question card displayed");        //This console logs correctly, but question card still displayed on main page
+}
+
