@@ -32,7 +32,7 @@ var downloadTimer = setInterval(function(){
 }, 1000);
 
 
-$("#generate").click(function(event) {
+$("#generate").click(function startQuiz(event) {
     event.preventDefault;
     getAPI();
 });
