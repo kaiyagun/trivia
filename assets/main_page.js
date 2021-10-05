@@ -14,9 +14,10 @@ console.log("hi");
 //This sets the initial display of the game card border to none
 document.getElementById("game-card-border").style.display = "none";
 //This creates the onclick function which hides the generator box and displays the questions box
-document.getElementById("trivia-gen").onclick = function () {
+    //TODO: adding smoother transition between elements
+document.getElementById("generate").onclick = function () {
     document.getElementById("trivia-gen").style.display = "none";
-    document.getElementById("")
+    document.getElementById("game-card-border").style.display = "block";
 }
 
 
