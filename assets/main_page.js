@@ -1,6 +1,13 @@
 var triviaAPI = "https://opentdb.com/api.php?amount=";
 var insultAPI = "https://evilinsult.com/generate_insult.php?lang=en&type=json";
 var genButton = $("#generate");
+var answersEl = [$("#answer-1"), $("#answer-2"), $("#answer-3"), $("#answer-4")];
+
+var numQuestions = document.getElementById("quizQNumber");
+var difficulty = document.getElementById("#quizQDifficulty");
+var category = document.getElementById("#quizQCategory");
+
+
 
 console.log("hi");
 
@@ -15,20 +22,42 @@ var downloadTimer = setInterval(function(){
     timeLeft -= 1;
 }, 1000);
 
-var callAPI = function () {
-    var numQuestions = $("#quizQNumber").value;
-    console.log(numQuestions);
-};
 
 $("#generate").click(function(event) {
     event.preventDefault;
-    console.log("hi");
+    getAPI();
 });
 
-document.getElementById("generate").onclick = function () {
-    document.getElementById("trivia-gen").style.display = "none";
-    document.getElementById("game-card-border").style.display = "block";   //TODO: needs an additional component that hides "questions" id on page load, and displays "questions" id on click "generate" button
-    console.log("trivia generator hidden");
-    console.log("question card displayed");        //This console logs correctly, but question card still displayed on main page
-}
 
+
+var getAPI = function() {
+    var url = triviaAPI + numQuestions + "&category=" + category.val() + "&difficulty=" + difficulty;
+
+    console.log(url);
+    
+
+    if (numQuestions === null || category === null || difficulty === null) {
+        //error message here, fields must have a value
+    };
+
+    fetch(url)
+    .then(function (response) {
+        if (response.ok) {
+
+            response.json().then(results => {
+                console.log(results);
+                });
+            };
+        })
+    .catch(error => {
+        console.log("fail" + error);
+    })
+
+};
+
+var displayQuestions = function() {
+    console.log(getAPI);
+};
+
+
+    
