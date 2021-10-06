@@ -4,8 +4,8 @@ var genButton = $("#generate");
 var answersEl = [$("#answer-1"), $("#answer-2"), $("#answer-3"), $("#answer-4")];
 
 var numQuestions = document.getElementById("quizQNumber");
-var difficulty = document.getElementById("#quizQDifficulty");
-var category = document.getElementById("#quizQCategory");
+var difficulty = document.getElementById("quizQDifficulty");
+var category = document.querySelector("#quizQCategory");
 
 
 
@@ -34,14 +34,7 @@ var downloadTimer = setInterval(function(){
 }, 1000);
 
 
-$("#generate").click(function startQuiz(event) {
-    event.preventDefault;
-    console.log("hi");
 
-    setInterval();
-    displayQuestions();
-    checkAnswer();
-});
 
 function displayQuestions(){
 
@@ -50,13 +43,31 @@ function displayQuestions(){
 function checkAnswer(){
     
 }
+
+
+https://opentdb.com/api.php?amount=10&category=23&difficulty=easy&type=multiple
+
+
+var displayQuestions = function() {
+    console.log(getAPI);
+};
+
+$("#generate").click(function startQuiz(event) {
+    event.preventDefault;
+    console.log("hi");
     getAPI();
-
-
+    setInterval();
+    displayQuestions();
+    checkAnswer();
+});
+https://opentdb.com/api.php?amount=4&category=23&difficulty=meadium
 
 
 var getAPI = function() {
-    var url = triviaAPI + numQuestions + "&category=" + category.val() + "&difficulty=" + difficulty;
+    var value = category.options[category.selectedIndex].value;
+    var amount = numQuestions.options[numQuestions.selectedIndex].value;
+    var challege = difficulty.options[difficulty.selectedIndex].value;
+    var url = `${triviaAPI}${amount}&category=${value}&difficulty=${challege}`;
 
     console.log(url);
     
@@ -75,10 +86,3 @@ var getAPI = function() {
     })
 
 };
-
-var displayQuestions = function() {
-    console.log(getAPI);
-};
-
-
-    
