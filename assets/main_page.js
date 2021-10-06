@@ -107,7 +107,7 @@ genButton.click(function startQuiz(event) {
     .transition({
         onComplete : showQuiz()
     })
-    getData();
+    // getData();
     displayQuestions();
     // showQuiz();
 });
@@ -117,11 +117,6 @@ genButton.click(function startQuiz(event) {
 
 
 //this calls on flipping card function by pressing an answer 
-answerButtonsEl.click(function flipCard(event) {
-    event.preventDefault;
-    console.log("answer button clicked");
-});
-
 //answerbuttons--> lead to "flip" function, leads to new card
     //add new card to html 
     // iwns and losses result in different  text/content being displayed
