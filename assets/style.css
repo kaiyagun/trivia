@@ -25,7 +25,23 @@ body{
     right:450px;
 }
 
+#answer-card-border {
+    border: 7px solid greenyellow;
+    border-radius: 12px;
+    margin:auto;
+    position: absolute;
+    top: 300px;
+    right:450px;
+    display: none; 
+}
+
 #questions {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: 3px solid orangered;
+}
+
+#allAnswers {
     margin-top: 5%;
     margin-bottom: 5%;
     border: 3px solid orangered;
