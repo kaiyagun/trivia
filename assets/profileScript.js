@@ -96,3 +96,9 @@ var saveName = function () {
 setttingName();
 pastGames();
 scoreBoard();
+profileLoad()
+
+var profileLoad = function () {
+    var profilePage = $("#profile");
+    console.log(profilePage)
+}
