@@ -11,6 +11,16 @@ var category = document.getElementById("#quizQCategory");
 
 console.log("hi");
 
+//This sets the initial display of the game card border to none
+document.getElementById("game-card-border").style.display = "none";
+//This creates the onclick function which hides the generator box and displays the questions box
+    //TODO: adding smoother transition between elements
+document.getElementById("generate").onclick = function () {
+    document.getElementById("trivia-gen").style.display = "none";
+    document.getElementById("game-card-border").style.display = "block";
+}
+
+
 var timeLeft = 10;
 var downloadTimer = setInterval(function(){
     if (timeLeft <=0) {
@@ -40,7 +50,6 @@ function checkAnswer(){
     
 }
     getAPI();
-});
 
 
 
