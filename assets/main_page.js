@@ -61,10 +61,6 @@ var getAPI = function() {
     console.log(url);
     
 
-    if (numQuestions === null || category === null || difficulty === null) {
-        //error message here, fields must have a value
-    };
-
     fetch(url)
     .then(function (response) {
         if (response.ok) {
