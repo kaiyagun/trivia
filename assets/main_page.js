@@ -55,7 +55,6 @@ function checkAnswer(){
 
 
 
-
 var getAPI = function() {
     var url = triviaAPI + numQuestions + "&category=" + category.val() + "&difficulty=" + difficulty;
 
