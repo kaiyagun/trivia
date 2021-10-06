@@ -115,8 +115,28 @@ genButton.click(function startQuiz(event) {
 
 //this is for flipping card 
 
-
+//COF commented this out for answer-card-border display
 //this calls on flipping card function by pressing an answer 
+//answerButtonsEl.click(function flipCard(event) {
+//    event.preventDefault;
+//    console.log("answer button clicked");
+//});
+
+var AnswerSelect = function() {
+    document.getElementById("answers").addEventListener("click", function() {
+        document.getElementById("answer-1").innerHTML = "THIS IS A TEST";
+        console.log("An answer button was clicked");
+    });
+}
+AnswerSelect();
+
+var displayAnswers = function() {
+    document.getElementById("game-card-border").addEventListener("click", function () {
+        document.getElementById("game-card-border").style.display = "none";
+        document.getElementById("answer-card-border").style.display = "block";
+    });
+}
+displayAnswers();
 //answerbuttons--> lead to "flip" function, leads to new card
     //add new card to html 
     // iwns and losses result in different  text/content being displayed
