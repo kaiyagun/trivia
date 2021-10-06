@@ -19,6 +19,7 @@ document.getElementById("generate").onclick = function () {
     document.getElementById("trivia-gen").style.display = "none";
     document.getElementById("game-card-border").style.display = "block";
     console.log("Generator hidden, questions displayed");
+    console.log("THIS FUCKING SUCKS");
 }
 
 
