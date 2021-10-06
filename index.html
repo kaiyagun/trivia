@@ -13,11 +13,21 @@
 
 
 <body>
-  <h1 class="ui huge header">
-    <img src="/images/avatar2/large/patrick.png" class="ui circular image">
-    Trivia Game
-  </h1>
-  <div id="game-card-border">
+  <div class="ui inverted segment">
+    <div class="ui inverted secondary pointing menu">
+      <a class="active item">
+        Trivia Game
+      </a>
+      <a class="item" href="./profile.html">
+        Profile
+      </a>
+      <a class="item">
+        Friends
+      </a>
+    </div>
+  </div>
+
+  <div class="ui container game" id="game-card-border">
     <div id="questions" class="ui raised very padded text container segment">
         <h2 id="question" class="ui header">Question:</h2>
         <p></p>
@@ -55,9 +65,12 @@
     </div>
   </div>
 
-  <div class="ui card " id="trivia-gen">
+  <div class="ui raised card gen" id="trivia-gen">
     <div class="content center aligned">
-      <div class="header">Trivia Generator</div>
+      <h2 class="ui center aligned icon header">
+        <i class="lightbulb outline icon"></i>
+        Trivia Game!
+      </h2>
     </div>
     <div class="content">
       <h4 class="ui sub center aligned header">Choose your game settings</h4>
@@ -65,7 +78,7 @@
         <div class="event">
           <div class="content">
             <div class="summary">
-              <select class="ui dropdown" id="quizQNumber">
+              <select class="ui fluid selection dropdown" id="quizQNumber">
               <option value="" >Select the number of quiz questions</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -76,13 +89,14 @@
               <option value="9">9</option>
               <option value="10">10</option>
             </select>
+            <br>
             </div>
           </div>
         </div>
         <div class="event">
           <div class="content">
             <div class="summary">
-              <select class="ui dropdown" id="quizQCategory">
+              <select class="ui fluid selection dropdown" id="quizQCategory">
                 <option value="" >Select the category of quiz questions</option>
                 <option value="27">Animals</option>
                 <option value="26">Celebrities</option>
@@ -93,13 +107,14 @@
                 <option value="21">sports</option>
                 <option value="25">Art</option>
               </select>
+              <br>
             </div>
           </div>
         </div>
         <div class="event">
           <div class="content">
             <div class="summary">
-              <select class="ui dropdown" id="quizQDifficulty">
+              <select class="ui fluid selection dropdown" id="quizQDifficulty">
                 <option value="">Select the difficulty of quiz questions</option>
                 <option value="easy">Mild</option>
                 <option value="medium">Medium</option>
@@ -111,7 +126,7 @@
       </div>
     </div>
     <div class="extra content">
-      <button id="generate" class="ui button">Generate your Trivia Quiz!</button>
+      <button id="generate" class="large ui fluid button">Generate your Trivia Quiz!</button>
     </div>
   </div>  
     
