@@ -107,9 +107,9 @@ genButton.click(function startQuiz(event) {
     .transition({
         onComplete : showQuiz()
     })
-    getData();
+    getAPI();
     displayQuestions();
-    // showQuiz();
+    //showQuiz();
 });
 
 
@@ -124,7 +124,6 @@ genButton.click(function startQuiz(event) {
 
 var AnswerSelect = function() {
     document.getElementById("answers").addEventListener("click", function() {
-        document.getElementById("answer-1").innerHTML = "THIS IS A TEST";
         console.log("An answer button was clicked");
     });
 }
@@ -137,6 +136,11 @@ var displayAnswers = function() {
     });
 }
 displayAnswers();
+
+var nextQuestion = function () {
+    document.getElementById("game-card-border").style.display = "none";
+}
+nextQuestion();
 //answerbuttons--> lead to "flip" function, leads to new card
     //add new card to html 
     // iwns and losses result in different  text/content being displayed
