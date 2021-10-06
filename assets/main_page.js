@@ -28,14 +28,9 @@ document.getElementById("game-card-border").style.display = "none";
 
 //this function hides front page and shows cards (which means the title page won't show again until something shows it)
 var showQuiz = function () {
-<<<<<<< HEAD
-    document.getElementById("trivia-gen").style.display = "none";
-    document.getElementById("game-card-border").style.display = "block";
-=======
     $('.game')
     .transition()
     console.log("Generator hidden, questions displayed");
->>>>>>> dev
 }
 
 
@@ -89,11 +84,6 @@ var getAPI = function () {
         })
 };
 
-q1.click(function (event) {
-    event.preventDefault;
-    console.log("click");
-    getAPI();
-})
 
 genButton.click(function startQuiz(event) {
     event.preventDefault;
@@ -115,7 +105,7 @@ genButton.click(function startQuiz(event) {
     .transition({
         onComplete : showQuiz()
     })
-    getData();
+    getAPI();
     displayQuestions();
     // showQuiz();
 });
@@ -130,21 +120,25 @@ genButton.click(function startQuiz(event) {
 //    console.log("answer button clicked");
 //});
 
-var AnswerSelect = function() {
-    document.getElementById("answers").addEventListener("click", function() {
-        document.getElementById("answer-1").innerHTML = "THIS IS A TEST";
-        console.log("An answer button was clicked");
-    });
-}
-AnswerSelect();
+// var AnswerSelect = function() {
+//     document.getElementById("answers").addEventListener("click", function() {
+//         console.log("An answer button was clicked");
+//     });
+// }
+// AnswerSelect();
 
-var displayAnswers = function() {
-    document.getElementById("game-card-border").addEventListener("click", function () {
-        document.getElementById("game-card-border").style.display = "none";
-        document.getElementById("answer-card-border").style.display = "block";
-    });
-}
-displayAnswers();
+$(".answer").click(function () {
+    $("#game-card-border").removeClass("visible");
+    $("#game-card-border").css("display", "none");
+    document.getElementById("answer-card-border").style.display = "block";
+})
+// var displayAnswers = function() {
+//     document.getElementById("game-card-border").addEventListener("click", function () {
+//         document.getElementById("game-card-border").style.display = "none";
+//         document.getElementById("answer-card-border").style.display = "block";
+//     });
+// }
+// displayAnswers();
 //answerbuttons--> lead to "flip" function, leads to new card
     //add new card to html 
     // iwns and losses result in different  text/content being displayed
