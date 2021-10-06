@@ -4,6 +4,9 @@ var genButton = $("#generate");
 var answerButtonsEl = [$("#answer-1"), $("#answer-2"), $("#answer-3"), $("#answer-4")];
 var timeLeft = 10;
 
+$('.ui.dropdown')
+  .dropdown()
+;
 
 //if you wanna change how much time is left ona  q, then also cahnge in html text value for the seconds-left element
 var numQuestions = document.getElementById("quizQNumber");
@@ -25,8 +28,14 @@ document.getElementById("game-card-border").style.display = "none";
 
 //this function hides front page and shows cards (which means the title page won't show again until something shows it)
 var showQuiz = function () {
+<<<<<<< HEAD
     document.getElementById("trivia-gen").style.display = "none";
     document.getElementById("game-card-border").style.display = "block";
+=======
+    $('.game')
+    .transition()
+    console.log("Generator hidden, questions displayed");
+>>>>>>> dev
 }
 
 
@@ -102,18 +111,42 @@ genButton.click(function startQuiz(event) {
         timeLeft -= 1;
     }, 1000);
 
-    getAPI();
+    $('.gen')
+    .transition({
+        onComplete : showQuiz()
+    })
+    getData();
     displayQuestions();
-    showQuiz();
+    // showQuiz();
 });
 
 
 //this is for flipping card 
 
-
+//COF commented this out for answer-card-border display
 //this calls on flipping card function by pressing an answer 
-answerButtonsEl.click(function flipCard(event) {
-    event.preventDefault;
-    console.log("answer button clicked");
-});
+//answerButtonsEl.click(function flipCard(event) {
+//    event.preventDefault;
+//    console.log("answer button clicked");
+//});
 
+var AnswerSelect = function() {
+    document.getElementById("answers").addEventListener("click", function() {
+        document.getElementById("answer-1").innerHTML = "THIS IS A TEST";
+        console.log("An answer button was clicked");
+    });
+}
+AnswerSelect();
+
+var displayAnswers = function() {
+    document.getElementById("game-card-border").addEventListener("click", function () {
+        document.getElementById("game-card-border").style.display = "none";
+        document.getElementById("answer-card-border").style.display = "block";
+    });
+}
+displayAnswers();
+//answerbuttons--> lead to "flip" function, leads to new card
+    //add new card to html 
+    // iwns and losses result in different  text/content being displayed
+
+        
