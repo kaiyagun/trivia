@@ -127,6 +127,8 @@ var AnswerSelect = function() {
         document.getElementById("answer-1").innerHTML = "THIS IS A TEST";
         console.log("An answer button was clicked");
     });
+
+    $('.game').style.display = "none";
 }
 AnswerSelect();
 
