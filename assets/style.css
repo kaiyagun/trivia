@@ -17,6 +17,7 @@ body{
 }
 
 #game-card-border {
+    background-color: aliceblue;
     border: 7px solid greenyellow;
     border-radius: 12px;
     margin:auto;
