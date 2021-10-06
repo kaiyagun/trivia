@@ -9,6 +9,13 @@ var timeLeft = 10;
 var numQuestions = document.getElementById("quizQNumber");
 var difficulty = document.getElementById("quizQDifficulty");
 var category = document.querySelector("#quizQCategory");
+var currentQ = document.querySelector("#question");
+var q1 = document.querySelector("#answer-1");
+var q2 = document.querySelector("#answer-2");
+var q3 = document.querySelector("#answer-3");
+var q4 = document.querySelector("#answer-4");
+var timeLeft = 10;
+
 
 //TODO: adding smoother transition between elements
 
@@ -23,20 +30,6 @@ var showQuiz = function () {
     console.log("Generator hidden, questions displayed");
 }
 
-async function getAPI() {
-    var value = category.options[category.selectedIndex].value;
-    var amount = numQuestions.options[numQuestions.selectedIndex].value;
-    var challege = difficulty.options[difficulty.selectedIndex].value;
-    var url = `${triviaAPI}${amount}&category=${value}&difficulty=${challege}&type=multiple`;
-
-        try {
-            let res = await fetch(url);
-            return await res.json();
-        } catch (error) {
-            console.log(error);
-        }
-
-};
 
 function checkAnswer(){
     var nextQuestionBut = document.createElement("button");
@@ -45,21 +38,51 @@ function checkAnswer(){
     
 }
 
-var displayQuestions = function() {
+var displayQuestions = function () {
 };
 
-async function getData() {
-    let data = await getAPI();
-    let newData = data.results.map(x => x);
-    console.log(newData);
+
+var getAnswers = function (x) {
+    var incor = x.results[0].incorrect_answers
+    console.log(x.results[0].correct_answer)
+    var arr = [x.results[0].correct_answer, incor[0], incor[1], incor[2]]
+    var i = arr.length, k, temp;      // k is to generate random index and temp is to swap the values
+    while (--i > 0) {
+        k = Math.floor(Math.random() * (i + 1));
+        temp = arr[k];
+        arr[k] = arr[i];
+        arr[i] = temp;
+    }
+    q1.textContent = arr[0];
+    q2.textContent = arr[1];
+    q3.textContent = arr[2];
+    q4.textContent = arr[3];
+}
+
+var getQuestion = function (x) {
+    console.log(x)
+    v = x.results[0].question;
+    currentQ.textContent = x.results[0].question;
 
 }
 
-var wrongAnswer = function() {
-    //wrong asnwer function here, already linked to end of timer
+var getAPI = function () {
+    var value = category.options[category.selectedIndex].value;
+    var amount = numQuestions.options[numQuestions.selectedIndex].value;
+    var challege = difficulty.options[difficulty.selectedIndex].value;
+    var url = `${triviaAPI}${amount}&category=${value}&difficulty=${challege}&type=multiple`;
 
-    console.log("times up");
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            getQuestion(data);
+            getAnswers(data);
+        })
 };
+
+
 
 genButton.click(function startQuiz(event) {
     event.preventDefault;
@@ -77,7 +100,7 @@ genButton.click(function startQuiz(event) {
         timeLeft -= 1;
     }, 1000);
 
-    getData();
+    getAPI();
     displayQuestions();
     showQuiz();
 });
