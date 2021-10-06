@@ -55,16 +55,11 @@ function checkAnswer(){
 
 
 
-
 var getAPI = function() {
     var url = triviaAPI + numQuestions + "&category=" + category.val() + "&difficulty=" + difficulty;
 
     console.log(url);
     
-
-    if (numQuestions === null || category === null || difficulty === null) {
-        //error message here, fields must have a value
-    };
 
     fetch(url)
     .then(function (response) {
