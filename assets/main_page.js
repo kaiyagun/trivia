@@ -107,7 +107,7 @@ genButton.click(function startQuiz(event) {
     })
     getAPI();
     displayQuestions();
-    // showQuiz();
+    //showQuiz();
 });
 
 
