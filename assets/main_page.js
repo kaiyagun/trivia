@@ -13,10 +13,10 @@ var numQuestions = document.getElementById("quizQNumber");
 var difficulty = document.getElementById("quizQDifficulty");
 var category = document.querySelector("#quizQCategory");
 var currentQ = document.querySelector("#question");
-var q1 = document.querySelector("#answer-1");
-var q2 = document.querySelector("#answer-2");
-var q3 = document.querySelector("#answer-3");
-var q4 = document.querySelector("#answer-4");
+var q1 = $("#answer-1");
+var q2 = $("#answer-2");
+var q3 = $("#answer-3");
+var q4 = $("#answer-4");
 var timeLeft = 10;
 
 
@@ -48,7 +48,7 @@ var displayQuestions = function () {
 var getAnswers = function (x) {
     var incor = x.results[0].incorrect_answers
     console.log(x.results[0].correct_answer)
-    var arr = [x.results[0].correct_answer, incor[0], incor[1], incor[2]]
+    var arr = [[x.results[0].correct_answer, "correct"], [incor[0], "incorrect"], [incor[1], "incorrect"], [incor[2], "incorrect"]];
     var i = arr.length, k, temp;      // k is to generate random index and temp is to swap the values
     while (--i > 0) {
         k = Math.floor(Math.random() * (i + 1));
@@ -56,24 +56,23 @@ var getAnswers = function (x) {
         arr[k] = arr[i];
         arr[i] = temp;
     }
-    q1.textContent = arr[0];
-    q2.textContent = arr[1];
-    q3.textContent = arr[2];
-    q4.textContent = arr[3];
+    q1.html(arr[0][0]);
+    q2.html(arr[1][0]);
+    q3.html(arr[2][0]);
+    q4.html(arr[3][0]);
 }
 
 var getQuestion = function (x) {
     console.log(x)
     v = x.results[0].question;
-    currentQ.textContent = x.results[0].question;
+    currentQ.innerHTML = x.results[0].question;
 
 }
 
 var getAPI = function () {
     var value = category.options[category.selectedIndex].value;
-    var amount = numQuestions.options[numQuestions.selectedIndex].value;
     var challege = difficulty.options[difficulty.selectedIndex].value;
-    var url = `${triviaAPI}${amount}&category=${value}&difficulty=${challege}&type=multiple`;
+    var url = `${triviaAPI}1&category=${value}&difficulty=${challege}&type=multiple`;
 
     fetch(url)
         .then(function (response) {
@@ -84,7 +83,6 @@ var getAPI = function () {
             getAnswers(data);
         })
 };
-
 
 
 genButton.click(function startQuiz(event) {
@@ -122,25 +120,25 @@ genButton.click(function startQuiz(event) {
 //    console.log("answer button clicked");
 //});
 
-var AnswerSelect = function() {
-    document.getElementById("answers").addEventListener("click", function() {
-        console.log("An answer button was clicked");
-    });
-}
-AnswerSelect();
+// var AnswerSelect = function() {
+//     document.getElementById("answers").addEventListener("click", function() {
+//         console.log("An answer button was clicked");
+//     });
+// }
+// AnswerSelect();
 
-var displayAnswers = function() {
-    document.getElementById("game-card-border").addEventListener("click", function () {
-        document.getElementById("game-card-border").style.display = "none";
-        document.getElementById("answer-card-border").style.display = "block";
-    });
-}
-displayAnswers();
-
-var nextQuestion = function () {
-    document.getElementById("game-card-border").style.display = "none";
-}
-nextQuestion();
+$(".answer").click(function () {
+    $("#game-card-border").removeClass("visible");
+    $("#game-card-border").css("display", "none");
+    document.getElementById("answer-card-border").style.display = "block";
+})
+// var displayAnswers = function() {
+//     document.getElementById("game-card-border").addEventListener("click", function () {
+//         document.getElementById("game-card-border").style.display = "none";
+//         document.getElementById("answer-card-border").style.display = "block";
+//     });
+// }
+// displayAnswers();
 //answerbuttons--> lead to "flip" function, leads to new card
     //add new card to html 
     // iwns and losses result in different  text/content being displayed
