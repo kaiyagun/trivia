@@ -28,7 +28,6 @@ var showQuiz = function () {
     document.getElementById("trivia-gen").style.display = "none";
     document.getElementById("game-card-border").style.display = "block";
     console.log("Generator hidden, questions displayed");
-    console.log("THIS FUCKING SUCKS");
 }
 
 
@@ -109,12 +108,12 @@ genButton.click(function startQuiz(event) {
 
 //this is for flipping card 
 
-
+//COF commented this out for answer-card-border display
 //this calls on flipping card function by pressing an answer 
-answerButtonsEl.click(function flipCard(event) {
-    event.preventDefault;
-    console.log("answer button clicked");
-});
+//answerButtonsEl.click(function flipCard(event) {
+//    event.preventDefault;
+//    console.log("answer button clicked");
+//});
 
 var AnswerSelect = function() {
     document.getElementById("answers").addEventListener("click", function() {
