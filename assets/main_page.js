@@ -3,17 +3,17 @@ var triviaAPI = "https://opentdb.com/api.php?amount=";
 var genButton = $("#generate");
 var answerButtonsEl = [$("#answer-1"), $("#answer-2"), $("#answer-3"), $("#answer-4")];
 var timeLeft = 10;
-var nextQuestionBut = $("#nextQuestionBut");
 
 $('.ui.dropdown')
-  .dropdown()
-;
+    .dropdown()
+    ;
 
 //if you wanna change how much time is left ona  q, then also cahnge in html text value for the seconds-left element
-var numQuestions = document.getElementById("quizQNumber");
-var difficulty = document.getElementById("quizQDifficulty");
+var numQuestions = document.querySelector("#quizQNumber");
+var difficulty = document.querySelector("#quizQDifficulty");
 var category = document.querySelector("#quizQCategory");
-var currentQ = document.querySelector("#question");
+var currentQ = $("#question");
+var newQ = $("#nextQuestionBut");
 var q1 = $("#answer-1");
 var q2 = $("#answer-2");
 var q3 = $("#answer-3");
@@ -24,28 +24,22 @@ var timeLeft = 10;
 //TODO: adding smoother transition between elements
 
 
-
 //This sets the initial display of the game card border to none
-document.getElementById("game-card-border").style.display = "none";
+$("#game-card-border").css("display", "none")
 
 //this function hides front page and shows cards (which means the title page won't show again until something shows it)
 var showQuiz = function () {
     $('.game')
-    .transition('fly up');
+        .transition()
     console.log("Generator hidden, questions displayed");
 }
 
-//function checkAnswer(){
-//    var nextQuestionBut = document.createElement("button");
-//    nextQuestionBut.textContent = "Next Question";
-//    timeLeftovers.append(nextQuestionBut);
-//}
 
-//var returnQuiz = function () {
-//    $('.game')
-//    .transition('fly up');
-//    console.log("Answer hidden, questions displayed");
-//}
+
+
+var displayQuestions = function () {
+};
+
 
 var getAnswers = function (x) {
     var incor = x.results[0].incorrect_answers
@@ -67,7 +61,7 @@ var getAnswers = function (x) {
 var getQuestion = function (x) {
     console.log(x)
     v = x.results[0].question;
-    currentQ.innerHTML = x.results[0].question;
+    currentQ.html(`${x.results[0].question}`);
 
 }
 
@@ -75,47 +69,66 @@ var getAPI = function () {
     var value = category.options[category.selectedIndex].value;
     var challege = difficulty.options[difficulty.selectedIndex].value;
     var url = `${triviaAPI}1&category=${value}&difficulty=${challege}&type=multiple`;
+    var amount = localStorage.getItem("numberQuestions");
+    if (amount > 0) {
+        fetch(url)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                getQuestion(data);
+                getAnswers(data);
+            })
+        var startTimer = setInterval(function () {
+            if (timeLeft <= 0) {
+                clearInterval(startTimer);
+                var secondsLeft = $("#seconds-left");
+                secondsLeft.innerHTML = "Time's Up!"
+                wrongAnswer();
 
-    fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            getQuestion(data);
-            getAnswers(data);
-        })
-};
+            } else {
+                $("seconds-left").html(`${timeLeft} + " seconds"`);
+            }
+
+            timeLeft -= 1;
+        }, 1000);
+        amount = amount - 1
+        localStorage.setItem("numberQuestions", `${amount}`);
+        $("#game-card-border").css("display", "");
+    } else {
+        gameOver();
+    }
+}
+
+
 
 
 genButton.click(function startQuiz(event) {
     event.preventDefault;
-    var startTimer = setInterval(function(){
-        if (timeLeft <=0) {
-            clearInterval(startTimer);
-            var secondsLeft = document.getElementById("seconds-left");
-            secondsLeft.innerHTML = "Time's Up!"
-            wrongAnswer("");
-            
-        } else {
-            document.getElementById("seconds-left").innerHTML = timeLeft + " seconds";
-        }
-    
-        timeLeft -= 1;
-    }, 1000);
 
     $('.gen')
-    .transition({
-        onComplete : showQuiz()
-    })
-    var amount = numQuestions.options[numQuestions.selectedIndex].value + 1;
-    localStorage.setItem("numberQuestions", `${amount}` );
+        .transition({
+            onComplete: showQuiz()
+        })
+    var amount = numQuestions.options[numQuestions.selectedIndex].value;
+    localStorage.setItem("numberQuestions", `${amount}`);
     getAPI();
     displayQuestions();
     // showQuiz();
 });
 
 
-//this is for flipping card 
+$(".answer").click(function () {
+    $("#game-card-border").removeClass("visible");
+    $("#game-card-border").css("display", "none");
+    $("#answer-card-border").css("display", "block");
+})
+
+newQ.click(function () {
+    $("#answer-card-border").css("display", "none");
+    getAPI();
+})
+//this is for flipping card
 
 //COF commented this out for answer-card-border display
 //this calls on flipping card function by pressing an answer 
@@ -131,26 +144,8 @@ genButton.click(function startQuiz(event) {
 // }
 // AnswerSelect();
 
-$(".answer").click(function () {
-    $("#game-card-border").removeClass("visible");
-    $("#game-card-border").css("display", "none");
-    console.log($("#answers"));
-    answerCard = document.getElementById("answer-card-border")
-    answerCard.style.display = "block";
-})
-
-$()
-
-
-// var displayAnswers = function() {
-//     document.getElementById("game-card-border").addEventListener("click", function () {
-//         document.getElementById("game-card-border").style.display = "none";
-//         document.getElementById("answer-card-border").style.display = "block";
-//     });
-// }
-// displayAnswers();
 //answerbuttons--> lead to "flip" function, leads to new card
     //add new card to html 
     // iwns and losses result in different  text/content being displayed
 
-        
+
