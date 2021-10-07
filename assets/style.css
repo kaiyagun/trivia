@@ -67,6 +67,12 @@ body{
     margin-bottom: 30%;
 }
 
+#nextQuestionBut {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    position: relative;
+}
+
 #timer {
     margin-right: 5%;
 }
