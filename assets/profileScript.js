@@ -51,13 +51,6 @@ var scoreBoard = function () {
   }
 };
 
-var improvable = function (x) {
-  lowestScore = 0;
-  if (lowScore < lowestScore) {
-    lowestScore = lowScore;
-  }
-};
-
 var saveName = function () {
   var nameButton = $("<button>")
     .attr("class", "name mini ui button")
