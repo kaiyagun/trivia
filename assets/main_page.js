@@ -105,9 +105,11 @@ genButton.click(function startQuiz(event) {
     .transition({
         onComplete : showQuiz()
     })
+    var amount = numQuestions.options[numQuestions.selectedIndex].value + 1;
+    localStorage.setItem("numberQuestions", `${amount}` );
     getAPI();
     displayQuestions();
-    //showQuiz();
+    // showQuiz();
 });
 
 
@@ -130,7 +132,9 @@ genButton.click(function startQuiz(event) {
 $(".answer").click(function () {
     $("#game-card-border").removeClass("visible");
     $("#game-card-border").css("display", "none");
-    document.getElementById("answer-card-border").style.display = "block";
+    console.log($("#answers"));
+    answerCard = document.getElementById("answer-card-border")
+    answerCard.style.display = "block";
 })
 // var displayAnswers = function() {
 //     document.getElementById("game-card-border").addEventListener("click", function () {

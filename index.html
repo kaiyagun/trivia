@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0" >
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
-    <link rel="stylesheet" href="./assets/style.css">
-    <title>Trivia Game</title>
-    <link rel="icon" href="./assets/images/icon-light-bulb.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+  <link rel="stylesheet" href="./assets/style.css">
+  <title>Trivia Game</title>
+  <link rel="icon" href="./assets/images/icon-light-bulb.png">
 </head>
 
 
@@ -29,39 +30,33 @@
 
   <div class="ui container game" id="game-card-border">
     <div id="questions" class="ui raised very padded text container segment">
-        <h2 id="question" class="ui header">Question:</h2>
-        <p></p>
+      <h2 id="question" class="ui header">Question:</h2>
+      <p></p>
     </div>
-    <div class="ui center aligned container">
-        <div id="answers" class="ui vertical buttons">
-            <button id = "answer-1" class="answer ui button">Answer 1</button>
-            <button id = "answer-2" class="answer ui button">Answer 2</button>
-            <button id = "answer-3" class="answer ui button">Answer 3</button>
-            <button id = "answer-4" class="answer ui button">Answer 4</button>
-        </div>
-        <div id= "timer" class="ui right floated segment">
-            <h3>Time Left:</h3>
-            <p id="seconds-left" class="sub header">10 seconds</p>
-        </div>
+    <div class="ui center aligned container" id="answerList">
+      <div class="ui vertical buttons">
+        <button id="answer-1" class="answer ui button">Answer 1</button>
+        <button id="answer-2" class="answer ui button">Answer 2</button>
+        <button id="answer-3" class="answer ui button">Answer 3</button>
+        <button id="answer-4" class="answer ui button">Answer 4</button>
+      </div>
+      <div id="timer" class="ui right floated segment">
+        <h3>Time Left:</h3>
+        <p id="seconds-left" class="sub header">10 seconds</p>
+      </div>
     </div>
   </div>
 
   <div id="answer-card-border">
     <div id="allAnswers" class="ui raised very padded text container segment">
-        <h2 id="allAnswer" class="ui header">Answer:</h2>
-        <p></p>
+      <h2 id="allAnswer" class="ui header">Answer:</h2>
+      <p></p>
     </div>
     <div class="ui center aligned container">
-        <div id="answers" class="ui vertical buttons">
-            <button id = "answer-1" class="ui button">Answer 1</button>
-            <button id = "answer-2" class="ui button">Answer 2</button>
-            <button id = "answer-3" class="ui button">Answer 3</button>
-            <button id = "answer-4" class="ui button">Answer 4</button>
-        </div>
-        <div id= "timer" class="ui right floated segment">
-            <h3>Timer</h3>
-            <p id="seconds-left" class="sub header">seconds left</p>
-        </div>
+      <div id="timer" class="ui right floated segment">
+        <h3>Timer</h3>
+        <p id="seconds-left" class="sub header">seconds left</p>
+      </div>
     </div>
   </div>
 
@@ -79,17 +74,17 @@
           <div class="content">
             <div class="summary">
               <select class="ui fluid selection dropdown" id="quizQNumber">
-              <option value="" >Select the number of quiz questions</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            <br>
+                <option value="">Select the number of quiz questions</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+              <br>
             </div>
           </div>
         </div>
@@ -97,7 +92,7 @@
           <div class="content">
             <div class="summary">
               <select class="ui fluid selection dropdown" id="quizQCategory">
-                <option value="" >Select the category of quiz questions</option>
+                <option value="">Select the category of quiz questions</option>
                 <option value="27">Animals</option>
                 <option value="26">Celebrities</option>
                 <option value="9">General Knowledge</option>
@@ -128,11 +123,11 @@
     <div class="extra content">
       <button id="generate" class="large ui fluid button">Generate your Trivia Quiz!</button>
     </div>
-  </div>  
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
-    <script src="./assets/main_page.js"></script>
-</body>
-</html>
+  </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+  <script src="./assets/main_page.js"></script>
+</body>
+
+</html>
