@@ -3,6 +3,7 @@ var triviaAPI = "https://opentdb.com/api.php?amount=";
 var genButton = $("#generate");
 var answerButtonsEl = [$("#answer-1"), $("#answer-2"), $("#answer-3"), $("#answer-4")];
 var timeLeft = 10;
+var nextQuestionBut = $("#nextQuestionBut");
 
 $('.ui.dropdown')
   .dropdown()
@@ -23,27 +24,28 @@ var timeLeft = 10;
 //TODO: adding smoother transition between elements
 
 
+
 //This sets the initial display of the game card border to none
 document.getElementById("game-card-border").style.display = "none";
 
 //this function hides front page and shows cards (which means the title page won't show again until something shows it)
 var showQuiz = function () {
     $('.game')
-    .transition()
+    .transition('fly up');
     console.log("Generator hidden, questions displayed");
 }
 
+//function checkAnswer(){
+//    var nextQuestionBut = document.createElement("button");
+//    nextQuestionBut.textContent = "Next Question";
+//    timeLeftovers.append(nextQuestionBut);
+//}
 
-function checkAnswer(){
-    var nextQuestionBut = document.createElement("button");
-    nextQuestionBut.textContent = "Next Question";
-    timeLeftovers.append(nextQuestionBut);
-    
-}
-
-var displayQuestions = function () {
-};
-
+//var returnQuiz = function () {
+//    $('.game')
+//    .transition('fly up');
+//    console.log("Answer hidden, questions displayed");
+//}
 
 var getAnswers = function (x) {
     var incor = x.results[0].incorrect_answers
@@ -92,7 +94,7 @@ genButton.click(function startQuiz(event) {
             clearInterval(startTimer);
             var secondsLeft = document.getElementById("seconds-left");
             secondsLeft.innerHTML = "Time's Up!"
-            wrongAnswer();
+            wrongAnswer("");
             
         } else {
             document.getElementById("seconds-left").innerHTML = timeLeft + " seconds";
@@ -136,6 +138,10 @@ $(".answer").click(function () {
     answerCard = document.getElementById("answer-card-border")
     answerCard.style.display = "block";
 })
+
+$()
+
+
 // var displayAnswers = function() {
 //     document.getElementById("game-card-border").addEventListener("click", function () {
 //         document.getElementById("game-card-border").style.display = "none";
