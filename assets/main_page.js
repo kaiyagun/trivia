@@ -1,3 +1,4 @@
+
 var triviaAPI = "https://opentdb.com/api.php?amount=";
 // var insultAPI = "https://evilinsult.com/generate_insult.php?lang=en&type=json"; 
 var genButton = $("#generate");
@@ -96,14 +97,16 @@ function endGame() {
                 return response.json();
             })
             .then(function (data) {
-                // var check = data.url.indexOf("mp4");
-                // console.log
-                // if (check !== -1){
-                //     console.log("fuck")
-                // }
-                yay = $("<img>").attr({ "class": "reward", "src": `${data.url}` });
-                $(".fuck").append(yay);
-                console.log(data.url)
+                var check = data.url.indexOf("mp4");
+                console.log
+                if (check !== -1) {
+                    console.log("fuck")
+                } else {
+                    yay = $("<img>").attr({ "class": "reward", "src": `${data.url}` });
+                    $(".fuck").append(yay);
+                    console.log(data.url)
+
+                }
             })
     } else if (percentageScore < 0.6) {
         console.log("nooo")
@@ -206,5 +209,4 @@ newQ.click(function () {
 //answerbuttons--> lead to "flip" function, leads to new card
     //add new card to html 
     // iwns and losses result in different  text/content being displayed
-
 
