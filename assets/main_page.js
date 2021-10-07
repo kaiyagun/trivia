@@ -1,14 +1,9 @@
+
 var triviaAPI = "https://opentdb.com/api.php?amount=";
 // var insultAPI = "https://evilinsult.com/generate_insult.php?lang=en&type=json"; 
 var genButton = $("#generate");
 var answerButtonsEl = [$("#answer-1"), $("#answer-2"), $("#answer-3"), $("#answer-4")];
 var timeLeft = 10;
-
-$('.ui.dropdown')
-    .dropdown()
-    ;
-
-//if you wanna change how much time is left ona  q, then also cahnge in html text value for the seconds-left element
 var numQuestions = document.querySelector("#quizQNumber");
 var difficulty = document.querySelector("#quizQDifficulty");
 var category = document.querySelector("#quizQCategory");
@@ -19,15 +14,14 @@ var q1 = $("#answer-1");
 var q2 = $("#answer-2");
 var q3 = $("#answer-3");
 var q4 = $("#answer-4");
-var timeLeft = 10;
+var answersEl = $(".answer");
 
-var answersEl = $(".buttons");
-var currentQuestion = 0;
-var correctAnswer = $("#allAnswer");
-var score = 0;
-var correctBonus = 10;
-var maxQuestions = 10;
-var availableQuestions;
+
+$('.ui.dropdown')
+    .dropdown()
+    ;
+
+
 
 //TODO: adding smoother transition between elements
 
@@ -39,46 +33,17 @@ $("#game-card-border").css("display", "none")
 var showQuiz = function () {
     $('.game')
         .transition()
-    console.log("Generator hidden, questions displayed");
 }
+
+
+
 
 var displayQuestions = function () {
 };
 
-answersEl.on('click', ".button", checkAnswer);
-function checkAnswer(event){
-    event.preventDefault();
-    var nextQuestionBut = document.createElement("button");
-    nextQuestionBut.textContent = "Next Question";
-    timeLeftovers.append(nextQuestionBut);
-    var currentScore = JSON.parse(localStorage.getItem(score)||"0");
-    if (currentScore === null) {
-        localStorage.setItem("score", 0);
-    }
-    //store text value of element clikced to a varoable named `selectedAnwer`
-    var selectedAnswer = event.target.innerText;
-    //check selectedAnswer is equal to correctAnswer, if true increase score
-    if (selectedAnswer == correct_answer) {
-        classToApply = "correct";
-        $("#allAnswer").textContent = "Right";
-        currentScore +=10
-        localStorage.setItem("score", currentScore);
-    } else {
-        classToApply = "incorrect";
-        $("#allAnswer").textContent = "Wrong";
-    }
-    if (availableQuestions.lenght===0 || timeLeft ===0){
-        endGame();
-    } else {
-        getQuestion();
-    }
-
-
-}
 
 var getAnswers = function (x) {
-    var incor = x.results[0].incorrect_answers
-    console.log(x.results[0].correct_answer)
+    var incor = x.results[0].incorrect_answers;
     var arr = [[x.results[0].correct_answer, "correct"], [incor[0], "incorrect"], [incor[1], "incorrect"], [incor[2], "incorrect"]];
     var i = arr.length, k, temp;      // k is to generate random index and temp is to swap the values
     while (--i > 0) {
@@ -88,14 +53,68 @@ var getAnswers = function (x) {
         arr[i] = temp;
     }
     q1.html(arr[0][0]);
+    q1.attr("value", `${arr[0][1]}`);
     q2.html(arr[1][0]);
     q3.html(arr[2][0]);
     q4.html(arr[3][0]);
-    correct.html(`Answer: ${arr[0][0]}`);
+    correct.html(`Answer: ${x.results[0].correct_answer}`);
+    answersEl.on('click', checkAnswer);
+    function checkAnswer(event) {
+        event.preventDefault();
+        //store text value of element clikced to a varoable named `selectedAnwer`
+        var selectedAnswer = event.target.innerText;
+        amount = localStorage.getItem("numberQuestions")
+        //check selectedAnswer is equal to correctAnswer, if true increase score
+        if (selectedAnswer == x.results[0].correct_answer) {
+            var currentScore = parseInt(localStorage.getItem("score"));
+            console.log("correct")
+            currentScore += 10
+            localStorage.setItem("score", currentScore);
+        }
+
+
+    }
 }
 
+function endGame() {
+    var dogUrl = "https://random.dog/woof.json"
+    var jokeUrl = ""
+    questionsAsk = parseInt(localStorage.getItem("questionsAsked"));
+    totalCalc = questionsAsk * 10
+    totalScore = parseInt(localStorage.getItem("score"))
+    percentageScore = totalScore / totalCalc;
+    var gamesPlayed = parseInt(localStorage.getItem("numberGames"))
+    if (isNaN(gamesPlayed)) {
+        localStorage.setItem("numberGames", 1)
+    } else {
+        gamesPlayed = gamesPlayed + 1;
+        localStorage.setItem("numberGames", `${gamesPlayed}`)
+    }
+    if (percentageScore >= .6) {
+        console.log("yay")
+        fetch(dogUrl)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                var check = data.url.indexOf("mp4");
+                console.log
+                if (check !== -1) {
+                    console.log("fuck")
+                } else {
+                    yay = $("<img>").attr({ "class": "reward", "src": `${data.url}` });
+                    $(".fuck").append(yay);
+                    console.log(data.url)
+
+                }
+            })
+    } else if (percentageScore < 0.6) {
+        console.log("nooo")
+    }
+}
+
+
 var getQuestion = function (x) {
-    console.log(x)
     v = x.results[0].question;
     currentQ.html(`${x.results[0].question}`);
 
@@ -120,7 +139,10 @@ var getAPI = function () {
                 clearInterval(startTimer);
                 var secondsLeft = $("#seconds-left");
                 secondsLeft.innerHTML = "Time's Up!"
-                wrongAnswer();
+
+                $("#game-card-border").removeClass("visible");
+                $("#game-card-border").css("display", "none");
+                $("#answer-card-border").css("display", "block");
 
             } else {
                 $("seconds-left").html(`${timeLeft} + " seconds"`);
@@ -147,7 +169,11 @@ genButton.click(function startQuiz(event) {
             onComplete: showQuiz()
         })
     var amount = numQuestions.options[numQuestions.selectedIndex].value;
+
+    localStorage.setItem("questionsAsked", `${amount}`);
     localStorage.setItem("numberQuestions", `${amount}`);
+    localStorage.setItem("score", 0);
+
     getAPI();
     displayQuestions();
     // showQuiz();
@@ -166,29 +192,6 @@ newQ.click(function () {
 })
 //this is for flipping card
 
-
-function endGame() {
-    var catUrl = "https://cataas.com/cat/gif" 
-    var jokeUrl = ""
-    if(score >= correct_answer.length * 0.7){
-        alert = "Good Score";
-        fetch(catUrl)
-            .then(function (response) {
-                return response.json();
-            })
-    }
-    if (score > correct_answer.lenght * 0.4) {
-        alert = "Okay Score";
-        fetch(jokeUrl)
-            .then(function (response) {
-                return response.json();
-            })
-    }else {
-        alert = "Bad Score"
-    }
-}
-
-
 //COF commented this out for answer-card-border display
 //this calls on flipping card function by pressing an answer 
 //answerButtonsEl.click(function flipCard(event) {
@@ -206,5 +209,4 @@ function endGame() {
 //answerbuttons--> lead to "flip" function, leads to new card
     //add new card to html 
     // iwns and losses result in different  text/content being displayed
-
 
