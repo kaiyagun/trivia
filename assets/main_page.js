@@ -14,12 +14,20 @@ var difficulty = document.querySelector("#quizQDifficulty");
 var category = document.querySelector("#quizQCategory");
 var currentQ = $("#question");
 var newQ = $("#nextQuestionBut");
+var correct = $("#allAnswer");
 var q1 = $("#answer-1");
 var q2 = $("#answer-2");
 var q3 = $("#answer-3");
 var q4 = $("#answer-4");
 var timeLeft = 10;
 
+var answersEl = $(".buttons");
+var currentQuestion = 0;
+var correctAnswer = $("#allAnswer");
+var score = 0;
+var correctBonus = 10;
+var maxQuestions = 10;
+var availableQuestions;
 
 //TODO: adding smoother transition between elements
 
@@ -34,6 +42,7 @@ var showQuiz = function () {
     console.log("Generator hidden, questions displayed");
 }
 
+<<<<<<< HEAD
 
 function checkAnswer(){
     var nextQuestionBut = document.createElement("button");
@@ -43,9 +52,41 @@ function checkAnswer(){
 }
 
 
+=======
+>>>>>>> dev
 var displayQuestions = function () {
 };
 
+answersEl.on('click', ".button", checkAnswer);
+function checkAnswer(event){
+    event.preventDefault();
+    var nextQuestionBut = document.createElement("button");
+    nextQuestionBut.textContent = "Next Question";
+    timeLeftovers.append(nextQuestionBut);
+    var currentScore = JSON.parse(localStorage.getItem(score)||"0");
+    if (currentScore === null) {
+        localStorage.setItem("score", 0);
+    }
+    //store text value of element clikced to a varoable named `selectedAnwer`
+    var selectedAnswer = event.target.innerText;
+    //check selectedAnswer is equal to correctAnswer, if true increase score
+    if (selectedAnswer == correct_answer) {
+        classToApply = "correct";
+        $("#allAnswer").textContent = "Right";
+        currentScore +=10
+        localStorage.setItem("score", currentScore);
+    } else {
+        classToApply = "incorrect";
+        $("#allAnswer").textContent = "Wrong";
+    }
+    if (availableQuestions.lenght===0 || timeLeft ===0){
+        endGame();
+    } else {
+        getQuestion();
+    }
+
+
+}
 
 var getAnswers = function (x) {
     var incor = x.results[0].incorrect_answers
@@ -62,6 +103,7 @@ var getAnswers = function (x) {
     q2.html(arr[1][0]);
     q3.html(arr[2][0]);
     q4.html(arr[3][0]);
+    correct.html(`Answer: ${arr[0][0]}`);
 }
 
 var getQuestion = function (x) {
@@ -102,7 +144,7 @@ var getAPI = function () {
         localStorage.setItem("numberQuestions", `${amount}`);
         $("#game-card-border").css("display", "");
     } else {
-        gameOver();
+        endGame();
     }
 }
 
@@ -137,6 +179,29 @@ newQ.click(function () {
 })
 
 //this is for flipping card
+
+
+function endGame() {
+    var catUrl = "https://cataas.com/cat/gif" 
+    var jokeUrl = ""
+    if(score >= correct_answer.length * 0.7){
+        alert = "Good Score";
+        fetch(catUrl)
+            .then(function (response) {
+                return response.json();
+            })
+    }
+    if (score > correct_answer.lenght * 0.4) {
+        alert = "Okay Score";
+        fetch(jokeUrl)
+            .then(function (response) {
+                return response.json();
+            })
+    }else {
+        alert = "Bad Score"
+    }
+}
+
 
 //COF commented this out for answer-card-border display
 //this calls on flipping card function by pressing an answer 
