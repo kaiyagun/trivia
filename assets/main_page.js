@@ -1,8 +1,14 @@
 
 var triviaAPI = "https://opentdb.com/api.php?amount=";
-// var insultAPI = "https://evilinsult.com/generate_insult.php?lang=en&type=json"; 
+// var insultAPI = "https://evilinsult.com/generate_insult.php?lang=en&type=json";
 var genButton = $("#generate");
-var answerButtonsEl = [$("#answer-1"), $("#answer-2"), $("#answer-3"), $("#answer-4")];
+var answerButtonsEl = [
+  $("#answer-1"),
+  $("#answer-2"),
+  $("#answer-3"),
+  $("#answer-4"),
+];
+// var timeLeft = 10;
 var numQuestions = document.querySelector("#quizQNumber");
 var difficulty = document.querySelector("#quizQDifficulty");
 var category = document.querySelector("#quizQCategory");
@@ -15,18 +21,13 @@ var q3 = $("#answer-3");
 var q4 = $("#answer-4");
 var answersEl = $(".answer");
 
-
-$('.ui.dropdown')
-    .dropdown()
-    ;
-
-
-
 //TODO: adding smoother transition between elements
 
+//for semantic dropdown
+$(".ui.dropdown").dropdown();
 
 //This sets the initial display of the game card border to none
-$("#game-card-border").css("display", "none")
+$("#game-card-border").css("display", "none");
 
 //this function hides front page and shows cards (which means the title page won't show again until something shows it)
 var showQuiz = function () {
@@ -69,6 +70,7 @@ var getAnswers = function (x) {
             console.log("correct")
             currentScore += 10
             localStorage.setItem("score", currentScore);
+            $(".scoreboard").text("Score: " + currentScore);
         }
 
 
@@ -76,6 +78,10 @@ var getAnswers = function (x) {
 }
 
 function endGame() {
+    var showEndCard = function () {
+        $(".ui.modal").modal("show");
+      };
+      
     var dogUrl = "https://random.dog/woof.json"
     var jokeUrl = ""
     questionsAsk = parseInt(localStorage.getItem("questionsAsked"));
@@ -104,16 +110,21 @@ function endGame() {
                         type: 'video/mp4',
                         controls: true
                     });
-                    $(".fuck").append(yaay);
+                    $(".reward").append(yaay);
+                    showEndCard();
                 } else {
                     yay = $("<img>").attr({ "class": "reward", "src": `${data.url}` }).width("400").height("400");
-                    $(".fuck").append(yay);
+                    $(".reward").append(yay);
                     console.log(data.url)
+                    showEndCard();
 
                 }
             })
     } else if (percentageScore < 0.6) {
+        ricky = $("<img>").attr({ "class": "reward", "src": "https://media2.giphy.com/media/A6hpE6SMS22lLhfrq1/giphy-downsized.gif?cid=6104955ec28fb6b75900380bb1955f0ecc2e2c65762921fe&rid=giphy-downsized.gif&ct=g"}).height("400");
+        $(".reward").append(ricky);
         console.log("nooo")
+        showEndCard();
     }
 }
 
@@ -167,41 +178,37 @@ var getAPI = function () {
 }
 
 
-
-
 genButton.click(function startQuiz(event) {
-    event.preventDefault;
+  event.preventDefault;
 
-    $('.gen')
-        .transition({
-            onComplete: showQuiz()
-        })
-    var amount = numQuestions.options[numQuestions.selectedIndex].value;
+  $(".gen").transition({
+    onComplete: showQuiz(),
+  });
+  var amount = numQuestions.options[numQuestions.selectedIndex].value;
 
-    localStorage.setItem("questionsAsked", `${amount}`);
-    localStorage.setItem("numberQuestions", `${amount}`);
-    localStorage.setItem("score", 0);
+  localStorage.setItem("questionsAsked", `${amount}`);
+  localStorage.setItem("numberQuestions", `${amount}`);
+  localStorage.setItem("score", 0);
 
     getAPI();
     displayQuestions();
     // showQuiz();
 });
 
-
 $(".answer").click(function () {
-    $("#game-card-border").removeClass("visible");
-    $("#game-card-border").css("display", "none");
-    $("#answer-card-border").css("display", "block");
-})
+  $("#game-card-border").removeClass("visible");
+  $("#game-card-border").css("display", "none");
+  $("#answer-card-border").css("display", "block");
+});
 
 newQ.click(function () {
-    $("#answer-card-border").css("display", "none");
-    getAPI();
-})
+  $("#answer-card-border").css("display", "none");
+  getAPI();
+});
 //this is for flipping card
 
 //COF commented this out for answer-card-border display
-//this calls on flipping card function by pressing an answer 
+//this calls on flipping card function by pressing an answer
 //answerButtonsEl.click(function flipCard(event) {
 //    event.preventDefault;
 //    console.log("answer button clicked");
@@ -215,6 +222,8 @@ newQ.click(function () {
 // AnswerSelect();
 
 //answerbuttons--> lead to "flip" function, leads to new card
+//add new card to html
+// iwns and losses result in different  text/content being displayed
     //add new card to html 
     // iwns and losses result in different  text/content being displayed
 

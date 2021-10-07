@@ -2,27 +2,6 @@ yeet
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Answer side of "#game-card-border"
 //WHEN user clicks on an answer button
 //THEN the question card flips (transitions) to the answer side which displays all answers and a "next question" button
