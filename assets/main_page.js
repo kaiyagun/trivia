@@ -3,7 +3,6 @@ var triviaAPI = "https://opentdb.com/api.php?amount=";
 var genButton = $("#generate");
 var answerButtonsEl = [$("#answer-1"), $("#answer-2"), $("#answer-3"), $("#answer-4")];
 var timeLeft = 10;
-var nextQuestionBut = $("#nextQuestionBut");
 
 $('.ui.dropdown')
   .dropdown()
@@ -24,28 +23,27 @@ var timeLeft = 10;
 //TODO: adding smoother transition between elements
 
 
-
 //This sets the initial display of the game card border to none
 document.getElementById("game-card-border").style.display = "none";
 
 //this function hides front page and shows cards (which means the title page won't show again until something shows it)
 var showQuiz = function () {
     $('.game')
-    .transition('fly up');
+    .transition()
     console.log("Generator hidden, questions displayed");
 }
 
-//function checkAnswer(){
-//    var nextQuestionBut = document.createElement("button");
-//    nextQuestionBut.textContent = "Next Question";
-//    timeLeftovers.append(nextQuestionBut);
-//}
 
-//var returnQuiz = function () {
-//    $('.game')
-//    .transition('fly up');
-//    console.log("Answer hidden, questions displayed");
-//}
+function checkAnswer(){
+    var nextQuestionBut = document.createElement("button");
+    nextQuestionBut.textContent = "Next Question";
+    timeLeftovers.append(nextQuestionBut);
+    
+}
+
+var displayQuestions = function () {
+};
+
 
 var getAnswers = function (x) {
     var incor = x.results[0].incorrect_answers
@@ -94,7 +92,7 @@ genButton.click(function startQuiz(event) {
             clearInterval(startTimer);
             var secondsLeft = document.getElementById("seconds-left");
             secondsLeft.innerHTML = "Time's Up!"
-            wrongAnswer("");
+            wrongAnswer();
             
         } else {
             document.getElementById("seconds-left").innerHTML = timeLeft + " seconds";
@@ -107,13 +105,9 @@ genButton.click(function startQuiz(event) {
     .transition({
         onComplete : showQuiz()
     })
-<<<<<<< HEAD
-    // getData();
-=======
     getAPI();
->>>>>>> dev
     displayQuestions();
-    //showQuiz();
+    // showQuiz();
 });
 
 
@@ -126,7 +120,6 @@ genButton.click(function startQuiz(event) {
 //    console.log("answer button clicked");
 //});
 
-<<<<<<< HEAD
 var AnswerSelect = function() {
     document.getElementById("answers").addEventListener("click", function() {
         document.getElementById("answer-1").innerHTML = "THIS IS A TEST";
@@ -144,7 +137,6 @@ var displayAnswers = function() {
     });
 }
 displayAnswers();
-=======
 // var AnswerSelect = function() {
 //     document.getElementById("answers").addEventListener("click", function() {
 //         console.log("An answer button was clicked");
@@ -157,10 +149,6 @@ $(".answer").click(function () {
     $("#game-card-border").css("display", "none");
     document.getElementById("answer-card-border").style.display = "block";
 })
-
-$()
-
-
 // var displayAnswers = function() {
 //     document.getElementById("game-card-border").addEventListener("click", function () {
 //         document.getElementById("game-card-border").style.display = "none";
@@ -168,7 +156,6 @@ $()
 //     });
 // }
 // displayAnswers();
->>>>>>> dev
 //answerbuttons--> lead to "flip" function, leads to new card
     //add new card to html 
     // iwns and losses result in different  text/content being displayed

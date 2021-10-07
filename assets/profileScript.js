@@ -12,7 +12,7 @@ var profileLoad = function () {
     var profileImprovement = $("#improvable");
 }
 
-var setttingName = function () {
+var settingName = function () {
     profileName.text(localStorage.getItem("userName"));
     if (profileName.text() == "") {
         saveName();
@@ -64,7 +64,7 @@ var improvable = function (x) {
 }
 
 var topGame = function () {
-    var profileTopCatergory = $("#topCatergory");
+    var profileTopCategory = $("#topCategory");
     bestGame = localStorage
 }
 
@@ -95,10 +95,10 @@ var saveName = function () {
     })
 }
 
-setttingName();
+settingName();
 pastGames();
 scoreBoard();
-profileLoad()
+profileLoad();
 
 var profileLoad = function () {
     var profilePage = $("#profile");
