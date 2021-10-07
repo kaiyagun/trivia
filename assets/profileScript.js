@@ -24,10 +24,9 @@ var setttingName = function () {
 
 var pastGames = function () {
     var profileGames = $("#games");
-    var games = localStorage.getItem("games");
-    if (games == null) {
+    var games = localStorage.getItem("numberGames");
+    if (isNaN(games)) {
         profileGames.text("0")
-        localStorage.setItem("games", 0)
     }
     else {
         profileGames.text(games)
@@ -61,11 +60,6 @@ var improvable = function (x) {
     if (lowScore < lowestScore) {
         lowestScore = lowScore
     }
-}
-
-var topGame = function () {
-    var profileTopCatergory = $("#topCatergory");
-    bestGame = localStorage
 }
 
 var saveName = function () {
