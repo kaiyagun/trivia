@@ -14,6 +14,7 @@ var difficulty = document.querySelector("#quizQDifficulty");
 var category = document.querySelector("#quizQCategory");
 var currentQ = $("#question");
 var newQ = $("#nextQuestionBut");
+var correct = $("#allAnswer");
 var q1 = $("#answer-1");
 var q2 = $("#answer-2");
 var q3 = $("#answer-3");
@@ -90,6 +91,7 @@ var getAnswers = function (x) {
     q2.html(arr[1][0]);
     q3.html(arr[2][0]);
     q4.html(arr[3][0]);
+    correct.html(`Answer: ${arr[0][0]}`);
 }
 
 var getQuestion = function (x) {
