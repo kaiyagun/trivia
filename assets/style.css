@@ -46,6 +46,7 @@ body{
 #allAnswers {
     margin-top: 5%;
     margin-bottom: 5%;
+    background-color: none;
     border: 3px solid orangered;
 }
 
@@ -81,7 +82,13 @@ body{
     background-color: #9993b2;
 }
 
+.correct {
+    background-color: greenyellow;
+}
 
+.incorrect {
+    background-color: red;
+}
 
 @media screen and (min-width: 768px) {
 }
