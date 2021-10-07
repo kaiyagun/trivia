@@ -70,6 +70,7 @@ var getAnswers = function (x) {
             console.log("correct")
             currentScore += 10
             localStorage.setItem("score", currentScore);
+            $(".scoreboard").text("Score: " + currentScore);
         }
 
 
@@ -77,6 +78,10 @@ var getAnswers = function (x) {
 }
 
 function endGame() {
+    var showEndCard = function () {
+        $(".ui.modal").modal("show");
+      };
+      
     var dogUrl = "https://random.dog/woof.json"
     var jokeUrl = ""
     questionsAsk = parseInt(localStorage.getItem("questionsAsked"));
@@ -105,16 +110,19 @@ function endGame() {
                         type: 'video/mp4',
                         controls: true
                     });
-                    $(".fuck").append(yaay);
+                    $(".reward").append(yaay);
+                    showEndCard();
                 } else {
                     yay = $("<img>").attr({ "class": "reward", "src": `${data.url}` }).width("400").height("400");
-                    $(".fuck").append(yay);
+                    $(".reward").append(yay);
                     console.log(data.url)
                     showEndCard();
 
                 }
             })
     } else if (percentageScore < 0.6) {
+        ricky = $("<img>").attr({ "class": "reward", "src": "https://media2.giphy.com/media/A6hpE6SMS22lLhfrq1/giphy-downsized.gif?cid=6104955ec28fb6b75900380bb1955f0ecc2e2c65762921fe&rid=giphy-downsized.gif&ct=g"}).height("400");
+        $(".reward").append(ricky);
         console.log("nooo")
         showEndCard();
     }
