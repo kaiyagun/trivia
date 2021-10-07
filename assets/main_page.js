@@ -3,7 +3,6 @@ var triviaAPI = "https://opentdb.com/api.php?amount=";
 // var insultAPI = "https://evilinsult.com/generate_insult.php?lang=en&type=json"; 
 var genButton = $("#generate");
 var answerButtonsEl = [$("#answer-1"), $("#answer-2"), $("#answer-3"), $("#answer-4")];
-var timeLeft = 10;
 var numQuestions = document.querySelector("#quizQNumber");
 var difficulty = document.querySelector("#quizQDifficulty");
 var category = document.querySelector("#quizQCategory");
@@ -100,9 +99,14 @@ function endGame() {
                 var check = data.url.indexOf("mp4");
                 console.log
                 if (check !== -1) {
-                    console.log("fuck")
+                    yaay = $('<video />', {
+                        src: `${data.url}`,
+                        type: 'video/mp4',
+                        controls: true
+                    });
+                    $(".fuck").append(yaay);
                 } else {
-                    yay = $("<img>").attr({ "class": "reward", "src": `${data.url}` });
+                    yay = $("<img>").attr({ "class": "reward", "src": `${data.url}` }).width("400").height("400");
                     $(".fuck").append(yay);
                     console.log(data.url)
 
@@ -134,20 +138,24 @@ var getAPI = function () {
                 getQuestion(data);
                 getAnswers(data);
             })
+        timeLeft = 10
         var startTimer = setInterval(function () {
             if (timeLeft <= 0) {
-                clearInterval(startTimer);
-                var secondsLeft = $("#seconds-left");
+                var secondsLeft = document.getElementById("seconds-left");
                 secondsLeft.innerHTML = "Time's Up!"
-
                 $("#game-card-border").removeClass("visible");
                 $("#game-card-border").css("display", "none");
                 $("#answer-card-border").css("display", "block");
+                timeLeft = 10;
+                clearInterval(startTimer);
 
             } else {
-                $("seconds-left").html(`${timeLeft} + " seconds"`);
+                document.getElementById("seconds-left").innerHTML = ` ${timeLeft} seconds`;
             }
 
+            $(".answer").click(function (){
+                clearInterval(startTimer)
+            })
             timeLeft -= 1;
         }, 1000);
         amount = amount - 1
