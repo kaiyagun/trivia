@@ -79,7 +79,9 @@ var getAnswers = function (x) {
 
 function endGame() {
     var showEndCard = function () {
-        $(".ui.modal").modal("show");
+        $(".basic.test.modal")
+        .modal("setting", "closable", false)
+        .modal("show");
       };
       
     var dogUrl = "https://random.dog/woof.json"
