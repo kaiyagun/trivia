@@ -172,6 +172,7 @@ body{
         transform: translate(-50%, -50%)
 
     }
+}
     @media screen and (min-width: 992px) {
         #game-card-border {
             max-width: 70%;
