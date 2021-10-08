@@ -13,12 +13,12 @@ body{
 #trivia-gen {
     position: absolute;
     right: 50%;
-    background-color: silver;
+    background-color:#A0DB35;
 }
 
 #game-card-border {
-    background-color: aliceblue;
-    border: 7px solid greenyellow;
+    background-color: orange;
+    border: 7px solid orangered;
     border-radius: 12px;
     margin:auto;
     position: absolute;
@@ -27,10 +27,10 @@ body{
 }
 
 #answer-card-border {
-    background-color: aliceblue;
-    border: 7px solid greenyellow;
+    background-color: purple;
+    border: 7px solid yellow;
     border-radius: 12px;
-    margin:auto;
+    /*margin:auto;*/
     position: absolute;
     top: 300px;
     right:450px;
@@ -41,13 +41,19 @@ body{
     margin-top: 5%;
     margin-bottom: 5%;
     border: 3px solid orangered;
+    text-align: center;
+    box-shadow: 5px 10px 8px gray;
+    font-weight: bolder;
 }
 
 #allAnswers {
     margin-top: 5%;
     margin-bottom: 5%;
     background-color: none;
-    border: 3px solid orangered;
+    border: 3px solid yellow;
+    text-align: center;
+    box-shadow: 5px 10px 8px gray;
+    font-weight: bolder;
 }
 
 #answer-1 {
@@ -76,6 +82,7 @@ body{
 
 #timer {
     margin-right: 5%;
+    background-color: greenyellow;
 }
 
 #menu-container {
@@ -89,9 +96,113 @@ body{
 .incorrect {
     background-color: red;
 }
+.reward {
+    /*max-height: 100%;*/
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+@media screen and (min-width: 480px){
+    #game-card-border {
+        max-width: 130%;  important:  !important;
+        padding: 1em;
+        position: absolute;
+        top: 25%;
+        left: 0%;
+        right: 0%;
+
+    }
+    #answer-card-border {
+        max-width: 130%;  important:  !important;
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        top: 25%;
+        left: 0%;
+        right:0%;
+
+
+    }
+    #trivia-gen {
+        max-width: 130%; important:  !important;
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+
+    } 
+}
 
 @media screen and (min-width: 768px) {
+    #game-card-border {
+        max-width: 100%;
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+    #answer-card-border {
+        max-width: 100%;
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        bottom: 0;
+        transform: translate(-50%, -50%)
+    }
+    #trivia-gen {
+        max-width: 100%;
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+
+    }
+    @media screen and (min-width: 992px) {
+        #game-card-border {
+            max-width: 70%;
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+    
+        }
+        #answer-card-border {
+            max-width: 70%;
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+    
+        }
+        #trivia-gen {
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
 }
 
-@media screen and (min-width: 992px) {
-}
