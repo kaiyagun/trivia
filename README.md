@@ -1,12 +1,19 @@
 trivia game
 
-Point-based trivia game with timed questions and expanding access to new features based on user score.
+AS A: Bored person,
 
-Presented with options for quiz and a "start quiz" button on homepage
+I WANT: To play a fun game that is also beneficial for my brain
 
-Linked to open trivia API for questions, https://opentdb.com/api_config.php
+SO THAT: I can keep busy during quarantine and keep exercising my brain to learn new facts
 
-results can have pos/neg feedback from either https://evilinsult.com/api/#generate-insult-get API or a cute image generator
+![image](https://user-images.githubusercontent.com/88464865/136594157-63905bb0-f41f-4c50-b4dc-9cd6fc894c2b.png)
 
-localStorage holds scores for returning users (and therefore holds the memory for using the new unlocked features)
+Our opening page presents the user with options on how they want to play their game, as well as a header that links to a profile that includes info about previously played games
 
+![image](https://user-images.githubusercontent.com/88464865/136594260-2f4efb2a-00a2-4764-b2a0-e4c09617b8eb.png)
+
+Question cards present the user with a question pulled from Trivia API, and 4 possible answer buttons.
+
+Correct answers are rewarded with 10 points, and the ending page varies depending on percentage of correct answers.
+
+Individual questions also have a 10 seconds timer, that if it runs out it results in the question being marked as incorrect.
